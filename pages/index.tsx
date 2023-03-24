@@ -1,5 +1,5 @@
-import { Card, Grid, Row, Text } from '@nextui-org/react'
 import { GetStaticProps, NextPage } from 'next'
+import { Grid } from '@nextui-org/react'
 import { pokeApi } from '../api'
 import { Layout } from '../components/layouts'
 import { PokemonCard } from '../components/pokemon'
@@ -32,10 +32,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   //   'Solo se verá en el servidor y al momento del build (o en modo develop en cada request'
   // )
 
-  const { data } = await pokeApi.get<PokemonListResponse>('/pokemon?limit=100')
+  const { data } = await pokeApi.get<PokemonListResponse>('/pokemon?limit=30')
 
-  const pokemons: SmallPokemon[] = data.results.map((poke, i) => ({
-    ...poke,
+  const pokemons: SmallPokemon[] = data.results.map((pokemon, i) => ({
+    ...pokemon,
     id: i + 1,
     img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
       i + 1
